@@ -1,18 +1,18 @@
 # turso-client
 
+A client for the Turso API.
+
 To install dependencies:
 
 ```bash
 bun install
 ```
 
-To run:
+To test:
 
 ```bash
-bun run index.ts
+bun test
 ```
-
-This project was created using `bun init` in bun v1.1.20. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
 
 ## License
 
