@@ -1,10 +1,6 @@
 import { TursoClient } from "../src";
-import { config } from "dotenv";
 import { expect, test } from "bun:test";
-config({
-  path: "../.env",
-});
-const TOKEN = process.env.TURSO_API_KEY;
+const TOKEN = Bun.env.TURSO_API_KEY;
 
 if (!TOKEN) {
   throw new Error("TURSO_API_KEY is not set in the environment variables");
