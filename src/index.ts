@@ -113,10 +113,8 @@ export class TursoClient {
     create: async (
       organizationName: string,
       body: CreateDatabaseBody
-    ): Promise<{ database: CreateDatabaseResponse } | { error: string }> => {
-      return this.request<
-        { database: CreateDatabaseResponse } | { error: string }
-      >({
+    ): Promise<{ database: CreateDatabaseResponse }> => {
+      return this.request<{ database: CreateDatabaseResponse }>({
         path: `v1/organizations/${organizationName}/databases`,
         method: "POST",
         body: body,
@@ -125,8 +123,8 @@ export class TursoClient {
     retrieve: async (
       organizationName: string,
       databaseName: string
-    ): Promise<{ database: DatabaseResponse } | { error: string }> => {
-      return this.request<{ database: DatabaseResponse } | { error: string }>({
+    ): Promise<{ database: DatabaseResponse }> => {
+      return this.request<{ database: DatabaseResponse }>({
         path: `v1/organizations/${organizationName}/databases/${databaseName}`,
         method: "GET",
       });
@@ -134,8 +132,8 @@ export class TursoClient {
     delete: async (
       organizationName: string,
       databaseName: string
-    ): Promise<{ database: string } | { error: string }> => {
-      return this.request<{ database: string } | { error: string }>({
+    ): Promise<{ database: string }> => {
+      return this.request<{ database: string }>({
         path: `v1/organizations/${organizationName}/databases/${databaseName}`,
         method: "DELETE",
       });
@@ -165,8 +163,8 @@ export class TursoClient {
     invalidateToken: async (
       organizationName: string,
       databaseName: string
-    ): Promise<void | { error: string }> => {
-      return this.request<void | { error: string }>({
+    ): Promise<void> => {
+      return this.request<void>({
         path: `v1/organizations/${organizationName}/databases/${databaseName}/auth/rotate`,
         method: "POST",
       });
@@ -219,8 +217,8 @@ export class TursoClient {
     add: async (
       organizationName: string,
       body: createMemberBody
-    ): Promise<createMemberResponse | { error: string }> => {
-      return this.request<createMemberResponse | { error: string }>({
+    ): Promise<createMemberResponse> => {
+      return this.request<createMemberResponse>({
         path: `v1/organizations/${organizationName}/members`,
         method: "POST",
         body: body,
@@ -229,8 +227,8 @@ export class TursoClient {
     remove: async (
       organizationName: string,
       username: string
-    ): Promise<{ member: string } | { error: string }> => {
-      return this.request<{ member: string } | { error: string }>({
+    ): Promise<{ member: string }> => {
+      return this.request<{ member: string }>({
         path: `v1/organizations/${organizationName}/members/${username}`,
         method: "DELETE",
       });
