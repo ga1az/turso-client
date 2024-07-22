@@ -47,3 +47,10 @@ export interface createTokenBody {
     };
   };
 }
+
+export interface retriveConfigurationResponse {
+  size_limit: string;
+  allow_attach: boolean;
+  block_reads: boolean;
+  block_writes: boolean;
+}

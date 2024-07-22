@@ -67,6 +67,9 @@ client.databases.create(env.TURSO_ORG, {
 // Retrieve database details
 client.databases.retrieve(env.TURSO_ORG, "database-name");
 
+// Retrieve database configuration
+client.databases.retrieveConfiguration(env.TURSO_ORG, "database-name");
+
 // Delete a database
 client.databases.delete(env.TURSO_ORG, "database-name");
 

@@ -12,6 +12,7 @@ import type {
   ListResponse,
   listTokensResponse,
   LocationsResponse,
+  retriveConfigurationResponse,
   revokeTokenResponse,
   validateTokenResponse,
 } from "./types";
@@ -126,6 +127,15 @@ export class TursoClient {
     ): Promise<{ database: DatabaseResponse }> => {
       return this.request<{ database: DatabaseResponse }>({
         path: `v1/organizations/${organizationName}/databases/${databaseName}`,
+        method: "GET",
+      });
+    },
+    retrieveConfiguration: async (
+      organizationName: string,
+      databaseName: string
+    ): Promise<{ configuration: retriveConfigurationResponse }> => {
+      return this.request<{ configuration: retriveConfigurationResponse }>({
+        path: `v1/organizations/${organizationName}/databases/${databaseName}/configuration`,
         method: "GET",
       });
     },
