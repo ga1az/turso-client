@@ -101,16 +101,33 @@ export class TursoClient {
   };
 
   public readonly databases = {
+    /**
+     * List databases for an organization
+     * @param organizationName The name of the organization
+     * @param group The group name
+     * @param schema Filter by schema database name
+     * @returns DatabaseResponse
+     */
     list: async (
       organizationName: string,
-      group?: string
+      group?: string,
+      schema?: string
     ): Promise<DatabaseResponse> => {
+      const query: Record<string, string> = {};
+      if (group) query.group = group;
+      if (schema) query.schema = schema;
       return this.request<DatabaseResponse>({
         path: `v1/organizations/${organizationName}/databases`,
         method: "GET",
-        query: group ? { group } : null,
+        query,
       });
     },
+    /**
+     * Create a new database
+     * @param organizationName
+     * @param CreateDatabaseBody
+     * @returns CreateDatabaseResponse
+     */
     create: async (
       organizationName: string,
       body: CreateDatabaseBody
@@ -121,6 +138,13 @@ export class TursoClient {
         body: body,
       });
     },
+    /**
+     * Retrieve the details of a specific database within an organization.
+     *
+     * @param organizationName - The name of the organization.
+     * @param databaseName - The name of the database to retrieve.
+     * @returns Promise<{ database: DatabaseResponse }> - A promise that resolves to the database details.
+     */
     retrieve: async (
       organizationName: string,
       databaseName: string
@@ -130,6 +154,13 @@ export class TursoClient {
         method: "GET",
       });
     },
+    /**
+     * Retrieve the configuration details of a specific database within an organization.
+     *
+     * @param organizationName - The name of the organization.
+     * @param databaseName - The name of the database to retrieve the configuration for.
+     * @returns Promise<{ configuration: retriveConfigurationResponse }> - A promise that resolves to the database configuration details.
+     */
     retrieveConfiguration: async (
       organizationName: string,
       databaseName: string
@@ -139,6 +170,13 @@ export class TursoClient {
         method: "GET",
       });
     },
+    /**
+     * Delete a specific database within an organization.
+     *
+     * @param organizationName - The name of the organization.
+     * @param databaseName - The name of the database to delete.
+     * @returns Promise<{ database: string }> - A promise that resolves to the result of the deletion.
+     */
     delete: async (
       organizationName: string,
       databaseName: string
@@ -148,6 +186,15 @@ export class TursoClient {
         method: "DELETE",
       });
     },
+    /**
+     * Create a new token for a specific database within an organization.
+     *
+     * @param organizationName - The name of the organization.
+     * @param databaseName - The name of the database to create a token for.
+     * @param queryParams - Optional query parameters for the request.
+     * @param body - Optional body parameters for the request.
+     * @returns Promise<{ jwt: string }> - A promise that resolves to the new token.
+     */
     createToken: async (
       organizationName: string,
       databaseName: string,
@@ -170,6 +217,13 @@ export class TursoClient {
         body: body,
       });
     },
+    /**
+     * Rotate the token for a specific database within an organization.
+     *
+     * @param organizationName - The name of the organization.
+     * @param databaseName - The name of the database to rotate the token for.
+     * @returns Promise<void> - A promise that resolves when the token has been rotated.
+     */
     invalidateToken: async (
       organizationName: string,
       databaseName: string
@@ -179,6 +233,13 @@ export class TursoClient {
         method: "POST",
       });
     },
+    /**
+     * List instances for a specific database within an organization.
+     *
+     * @param organizationName - The name of the organization.
+     * @param databaseName - The name of the database to list instances for.
+     * @returns Promise<{ instances: string[] }> - A promise that resolves to the list of instances.
+     */
     listInstances: async (
       organizationName: string,
       databaseName: string
