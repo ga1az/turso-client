@@ -2,6 +2,8 @@
 
 A TypeScript client for the Turso API, providing easy access to Turso's database management features.
 
+> This is not an official Turso client. It is a personal project and may not be maintained or updated as frequently.
+
 ## Installation
 
 To install dependencies:
